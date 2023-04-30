@@ -13,3 +13,12 @@ LEFT JOIN shippers s USING(shipper_id)
 ORDER BY o_s.name, o.order_id;
 
 -- Solution to Capture2
+USE sql_invoicing;
+SELECT 
+    p.date, 
+    c.name as client, 
+    p.amount,
+    p_m.name
+FROM payments p
+JOIN clients c USING(client_id)
+JOIN payment_methods p_m ON p.payment_method = p_m.payment_method_id;
