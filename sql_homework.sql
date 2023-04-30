@@ -22,3 +22,17 @@ SELECT
 FROM payments p
 JOIN clients c USING(client_id)
 JOIN payment_methods p_m ON p.payment_method = p_m.payment_method_id;
+
+-- Solution to Capture3
+USE sql_store;
+SELECT 
+    c.customer_id, 
+    c.first_name, 
+    c.points,
+    CASE
+	WHEN c.points < 2000 THEN 'bronze'
+        WHEN c.points < 3000 THEN 'silver'
+        ELSE 'gold'
+    END as type
+FROM customers c
+ORDER BY c.first_name;
